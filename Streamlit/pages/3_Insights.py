@@ -148,15 +148,15 @@ elif choose == 'Countries Clusters by relationship between GDP and CO2 Emission'
         Returns:
             Plotly bubble plot
         """
-        data = pd.read_csv('./Data_cleansing/csv_export_1/energyco2.csv')
+        data = pd.read_csv('././Data_cleansing/csv_export/energyco2.csv')
         data_2019 = data[data['Year'] == year]
         data_2019 = data_2019[['Country_Code', 'Energy_Consumption', 'Energy_Intensity_Per_Capita', 'Co2_Emission']]
 
-        country_info = pd.read_csv('./Data_cleansing/csv_export_1/country_info.csv')
+        country_info = pd.read_csv('././Data_cleansing/csv_export/country_info.csv')
         country_info_19 = country_info[country_info.Year == year]
         country_info_19 = country_info_19[['Country_Code', 'Gdp']]
 
-        countries = pd.read_csv('./Data_cleansing/csv_export_1/dim_country.csv')
+        countries = pd.read_csv('././Data_cleansing/csv_export/dim_country.csv')
         countries = countries[['Country', 'Country_Code']]
 
         data_2019 = data_2019.groupby('Country_Code').sum()
@@ -547,11 +547,11 @@ elif choose == 'CO2 prediction with Neural Network':
     #df_co2_completo = request(query) #me da error 502 (bad gateway)
 
     #solucion para la prueba ingestando desde el dataset
-    df_co2_completo = pd.read_csv('./Datasets/energyco2.csv')#Es el dataset original
-    df_countries = pd.read_csv('./Datasets/dim_country.csv')
-    df_energy_clean = pd.read_csv('./Data_cleansing/csv_export_1/energyco2.csv')#es el dataset que limpió Aurora y Ezequiel
+    df_co2_completo = pd.read_csv('././Datasets/energyco2.csv')#Es el dataset original
+    df_countries = pd.read_csv('././Data_cleansing/dim_country.csv')
+    df_energy_clean = pd.read_csv('././Data_cleansing/csv_export/energyco2.csv')
     #trabajando con los datasets
-    df_countries.rename(columns={'Latitude(average)':'latitude','Longitude(average)':'longitude'},inplace=True)
+    df_countries.rename(columns={'Latitude':'latitude','Longitude':'longitude'},inplace=True)
     df_co2_clean = df_energy_clean.drop(['Energy_Type_Code','Energy_Consumption','Energy_Intensity_Per_Capita','Energy_Intensity_By_Gdp','Year'], axis=1)
     CO2_Sum = df_co2_clean.groupby(['Country_Code']).sum().reset_index()
     df_co2_e = pd.DataFrame(CO2_Sum)
