@@ -540,7 +540,7 @@ elif choose == 'CO2 prediction with Neural Network':
     st.caption('Mouse wheel, zoom in or zoom out.')
 
     #Se carga el modelo entrenado
-    modelo_final = joblib.load('./modelo_entrenado.pkl')
+    modelo_final = joblib.load('https://github.com/Aurora-MR/CO2_emissions/blob/master/Streamlit/modelo_entrenado.pkl?raw=true')
     #Query desde AWS
     query =''' SELECT * FROM "db_clean3"."energyco2_origin" 
     where not country ='World' and not energy_type ='all_energy_types;'''
