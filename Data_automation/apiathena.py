@@ -3,11 +3,14 @@ import pandas as pd
 import requests
 import io
 
-url = 'url'
+url = 'https://3wecq7h5ea.execute-api.us-east-2.amazonaws.com/prod/nn?query='
 
 
 
-def apirequest(query):   
+def apirequest(query):
+    '''
+    Ejecuta query sql y devuelve un dataframe
+    '''
     try:
        error_message = ''
     
@@ -24,5 +27,3 @@ def apirequest(query):
         print (f'error exception : {error_message}')
     
     return df
-
-
